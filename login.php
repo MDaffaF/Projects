@@ -11,7 +11,8 @@ if ($cek > 0) {
     exit();
 } else {
     ?>
-     
+    <script>alert("User Tidak Ditemukan, Harap Hubungi Admin!");
+    window.location.href ="loginpage.php"</script>
     <?php
 }
 
