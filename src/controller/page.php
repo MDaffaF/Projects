@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include '../connection/koneksi.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengambil nilai dari form
     $username = $_POST["username"];
@@ -13,14 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Jika data berhasil dimasukkan ke database
         ?>
     <script>alert("User berhasil ditambahkan!")
-    window.location.href ="loginpage.php"
+    window.location.href ="../view/loginpage.php"
     </script>
     <?php
     } else {
         // Jika terjadi kesalahan saat memasukkan data ke database
         ?>
     <script>alert("User gagal ditambahkan!")
-    window.location.href ="pagependaftaran.php"
+    window.location.href ="../view/pagependaftaran.php"
     </script>
     <?php
 }

@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="login.css">
-    <link href ='logo.png' rel = 'shortcut icon'> 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link href ='../../assets/img/logo.png' rel = 'shortcut icon'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
-<body>
+<body style="background: url(../../assets/img/Login.jpg)fixed;">
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center m-0 text-center " style="height: 100vh;">
-        <form action="login.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">
+        <form action="../controller/login.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">
             <div class="form">
                 <div class="col-12">
-                    <img src="logo.png" alt="logo" id= "logo" width= 50px>  
+                    <img src="../../assets/img/logo.png" alt="logo" id= "logo" width= 50px>
                     <h4 class="title">Let's Grow With Us!</h4>
                     <div class="col-12">
                         <div class="input-group mb-3">
@@ -49,6 +49,6 @@
         </form>
     </div>
 </div>
-<script src="loginpage.js"></script>
+<script src="../../assets/js/loginpage.js"></script>
 </body>
 </html>

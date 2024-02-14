@@ -7,6 +7,9 @@
     <title>Home</title>
 </head>
 <body>
-    <p>Selamt Datang <br><a href="loginpage.php">Logout</a></br></p>
+<header>
+        <?php include '../component/header.php';?>
+    </header>
+    <p>Selamt Datang</p>
 </body>
 </html>

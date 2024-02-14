@@ -5,7 +5,7 @@
       font-family: 'Noto Sans', sans-serif;
       margin: auto;
       max-width: 100%;
-      background:url(Login.jpg)fixed;
+      /* background:url(../img/)fixed; */
       background-repeat: no-repeat;
       background-size: cover;
     }

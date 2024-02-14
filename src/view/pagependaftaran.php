@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center m-0 text-center " style="height: 100vh;">
-        <form action="page.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">
+        <form action="../controller/page.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">
             <div class="form">
                 <div class="col-12">
                 <img src="logo.png" alt="logo" id= "logo" width= 50px>    
