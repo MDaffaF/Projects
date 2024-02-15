@@ -15,8 +15,19 @@ $password = $_POST['password'];
 $query = mysqli_query($koneksi,"select * from tb_login where username='$username' and password='$password'");
 $cek = mysqli_num_rows($query);
 if ($cek > 0) {
-    header("location: ../view/homepage.php");
-    
+    ?>
+    <script>Swal.fire({
+  icon: "success",
+  text: "Selamat Datang!",
+  showConfirmButton: false,
+  timer: 1500
+});</script>
+  <script>
+    setTimeout(function() {
+            window.location.href = "../view/homepage.php";
+        }, 2000); // Redirect setelah 3 detik
+    </script>
+    <?php
     session_start();
     while ($dataUser = mysqli_fetch_array($query)) {
         $_SESSION['username'] = $dataUser['username'];
@@ -27,7 +38,6 @@ if ($cek > 0) {
     ?>
     <script>Swal.fire({
   icon: "error",
-  title: "Oops...",
   text: "User tidak ditemukan, Harap hubungi admin!",
   showConfirmButton: false,
   timer: 1500
