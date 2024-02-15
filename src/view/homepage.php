@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-        <?php include '../component/header.php';?>
+        <?php include '../component/header.php'?>
     </header>
     <p>Selamt Datang</p>
 </body>
