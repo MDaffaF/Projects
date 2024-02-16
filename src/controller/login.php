@@ -16,7 +16,7 @@ $query = mysqli_query($koneksi,"select * from tb_login where username='$username
 $cek = mysqli_num_rows($query);
 if ($cek > 0) {
     ?>
-    <script>Swal.fire({
+  <script>Swal.fire({
   icon: "success",
   text: "Selamat Datang!",
   showConfirmButton: false,

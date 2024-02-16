@@ -7,8 +7,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
         <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../../assets/css/home.css" rel="stylesheet" />
     <title>Home</title>
 </head>
@@ -16,20 +15,6 @@
 <header>
         <?php include '../component/header.php'?>
     </header>
-    <!-- Responsive navbar
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
         <!-- Header-->
         <header class="py-5">
             <div class="container px-lg-5">
@@ -75,21 +60,29 @@
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><a href=""><i class="bi bi-calendar-week"></i></a></div>
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><a href="../view/cutipage.php"><i class="bi bi-calendar-week"></i></a></div>
                                 <h2 class="fs-4 fw-bold">Pengajuan Cuti</h2>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6 col-xxl-4 mb-5">
+                    <?php
+                    include '../component/createIzin.php';
+                        if ($_SESSION['role'] == 'admin') {
+                            ?>
+                             <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-bootstrap"></i></div>
-                                <h2 class="fs-4 fw-bold">Feature boxes</h2>
-                                <p class="mb-0">We've created some custom feature boxes using Bootstrap icons!</p>
-                            </div>
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><a href="../view/manageakun.php"><i class="bi bi-person-gear"></i></div>
+                                <h2 class="fs-4 fw-bold">Manage Akun</h2>
+                                </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
+                            <?php
+                            
+                        }
+                    ?>
+                   
+                    <!--<div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-code"></i></div>

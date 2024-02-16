@@ -10,19 +10,20 @@
 <?php
 session_start();
 
-if(isset($_POST['cancelIzin'])){
-    cancelIzin();
+if(isset($_POST['cancelCuti'])){
+    cancelCuti();
 } else if(isset($_POST['approve'])){
     approve();
 } else if(isset($_POST['reject'])){
     reject();
 }
 
-function cancelIzin(){
-    include '../connection/koneksi.php';
-    $id = $_POST['id_izin'];
+function cancelCuti(){
 
-    $result = mysqli_query($koneksi, "DELETE FROM tb_izin WHERE id_izin=$id");
+    include '../connection/koneksi.php';
+    $id = $_POST['id_cuti'];
+
+    $result = mysqli_query($koneksi, "DELETE FROM tb_cuti WHERE id_cuti='$id'");
     
     if ($result) {
         $affected_rows = mysqli_affected_rows($koneksi);
@@ -31,21 +32,21 @@ function cancelIzin(){
             ?>
              <script>Swal.fire({
                 icon: "success",
-                text: "Request Izin berhasil dihapus!",
+                text: "Request cuti berhasil dihapus!",
                 showConfirmButton: false,
                 timer: 1500
                 });</script>
                 <script>
             setTimeout(function() {
-            window.location.href = "../view/izinpage.php";
+            window.location.href = "../view/cutipage.php";
             }, 2000); // Redirect setelah 3 detik
-    </script>
+            </script>
             <?php
         } else {
             ?>
             <script>
                 alert('No records were deleted. No rows affected.')
-                window.location.href = "../view/izinpage.php"
+                window.location.href = "../view/cutipage.php"
             </script>
             <?php
         }
@@ -53,15 +54,16 @@ function cancelIzin(){
         echo "Error executing query: " . mysqli_error($koneksi);
     }
 
-    header('../view/izinpage.php');
+    header('../view/cutipage.php');
     mysqli_close($koneksi);
+    
 }
 
 function approve(){
     include '../connection/koneksi.php';
-    $id = $_POST['id_izin'];
+    $id = $_POST['id_cuti'];
 
-    $result = mysqli_query($koneksi, "UPDATE tb_izin SET approval = true WHERE id_izin=$id");
+    $result = mysqli_query($koneksi, "UPDATE tb_cuti SET approval = true WHERE id_cuti=$id");
     
     if ($result) {
         $affected_rows = mysqli_affected_rows($koneksi);
@@ -76,7 +78,7 @@ function approve(){
                 });</script>
                 <script>
             setTimeout(function() {
-            window.location.href = "../view/izinpage.php";
+            window.location.href = "../view/cutipage.php";
             }, 2000); // Redirect setelah 3 detik
             </script>
             <?php
@@ -84,7 +86,7 @@ function approve(){
             ?>
             <script>
                 alert('No records were updated. No rows affected.')
-                window.location.href = "../view/izinpage.php"
+                window.location.href = "../view/cutipage.php"
             </script>
             <?php
         }
@@ -92,15 +94,15 @@ function approve(){
         echo "Error executing query: " . mysqli_error($koneksi);
     }
 
-    header('../view/izinpage.php');
+    header('../view/cutipage.php');
     mysqli_close($koneksi);
    }
 
    function reject(){
     include '../connection/koneksi.php';
-    $id = $_POST['id_izin'];
+    $id = $_POST['id_cuti'];
 
-    $result = mysqli_query($koneksi, "UPDATE tb_izin SET approval = false WHERE id_izin=$id");
+    $result = mysqli_query($koneksi, "UPDATE tb_cuti SET approval = false WHERE id_cuti=$id");
     
     if ($result) {
         $affected_rows = mysqli_affected_rows($koneksi);
@@ -115,7 +117,7 @@ function approve(){
                 });</script>
                 <script>
             setTimeout(function() {
-            window.location.href = "../view/izinpage.php";
+            window.location.href = "../view/cutipage.php";
             }, 2000); // Redirect setelah 3 detik
             </script>
             <?php
@@ -123,7 +125,7 @@ function approve(){
             ?>
             <script>
                 alert('No records were updated. No rows affected.')
-                window.location.href = "../view/izinpage.php"
+                window.location.href = "../view/cutipage.php"
             </script>
             <?php
         }
@@ -131,7 +133,7 @@ function approve(){
         echo "Error executing query: " . mysqli_error($koneksi);
     }
 
-    header('../view/izinpage.php');
+    header('../view/cutipage.php');
     mysqli_close($koneksi);
    }
 ?>
