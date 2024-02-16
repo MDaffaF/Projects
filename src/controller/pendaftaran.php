@@ -22,25 +22,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Jika data berhasil dimasukkan ke database
         ?>
     <script>Swal.fire({
-  title: "Apakah kamu yakin?",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes"
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "User berhasil Ditambahkan",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 3000   
-    });
-  }
-});</script>
-<script>
+          title: "Apakah kamu yakin?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: "User berhasil Ditambahkan",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 3000   
+            });
+          }
+        });</script>
+        <script>
     setTimeout(function() {
-            window.location.href = "../view/homepage.php";
+            window.location.href = "../view/manageakun.php";
         }, 2000); // Redirect setelah 3 detik
     </script>
     <?php

@@ -48,8 +48,8 @@
                                 <span class="input-group-text" for="inputGroupSelect01" id="basic-addon1" name="role"><i class="fas fa-users"></i></span>
                             </div>
                             <select class="custom-select" id="inputGroupSelect01" name="role">
-                                <option value="1">Karyawan</option>
-                                <option value="2">Admin</option>
+                                <option value="user">Karyawan</option>
+                                <option value="admin">Admin</option>
                             </select>
                         </div>
                     <div class="col-12">
