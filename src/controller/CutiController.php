@@ -20,49 +20,42 @@ if(isset($_POST['cancelCuti'])){
 
 function cancelCuti(){
 
-    // include '../connection/koneksi.php';
-    // $id = $_POST['id_cuti'];
+    include '../connection/koneksi.php';
+    $id = $_POST['id_cuti'];
 
-    // $result = mysqli_query($koneksi, "DELETE FROM tb_cuti WHERE id_cuti=$id");
+    $result = mysqli_query($koneksi, "DELETE FROM tb_cuti WHERE id_cuti='$id'");
     
-    // if ($result) {
-    //     $affected_rows = mysqli_affected_rows($koneksi);
+    if ($result) {
+        $affected_rows = mysqli_affected_rows($koneksi);
 
-    //     if ($affected_rows > 0) {
-    //         ?>
-    //          <script>Swal.fire({
-    //             icon: "success",
-    //             text: "Request cuti berhasil dihapus!",
-    //             showConfirmButton: false,
-    //             timer: 1500
-    //             });</script>
-    //             <script>
-    //         setTimeout(function() {
-    //         window.location.href = "../view/cutipage.php";
-    //         }, 2000); // Redirect setelah 3 detik
-    //         </script>
-    //         <?php
-    //     } else {
-    //         ?>
-    //         <script>
-    //             alert('No records were deleted. No rows affected.')
-    //             window.location.href = "../view/cutipage.php"
-    //         </script>
-    //         <?php
-    //     }
-    // } else {
-    //     echo "Error executing query: " . mysqli_error($koneksi);
-    // }
+        if ($affected_rows > 0) {
+            ?>
+             <script>Swal.fire({
+                icon: "success",
+                text: "Request cuti berhasil dihapus!",
+                showConfirmButton: false,
+                timer: 1500
+                });</script>
+                <script>
+            setTimeout(function() {
+            window.location.href = "../view/cutipage.php";
+            }, 2000); // Redirect setelah 3 detik
+            </script>
+            <?php
+        } else {
+            ?>
+            <script>
+                alert('No records were deleted. No rows affected.')
+                window.location.href = "../view/cutipage.php"
+            </script>
+            <?php
+        }
+    } else {
+        echo "Error executing query: " . mysqli_error($koneksi);
+    }
 
-    // header('../view/cutipage.php');
-    // mysqli_close($koneksi);
-    
-    ?>
-    <script>
-alert("alskasjdlkj")
-</>
-    <?php
-   
+    header('../view/cutipage.php');
+    mysqli_close($koneksi);
     
 }
 
