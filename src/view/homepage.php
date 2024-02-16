@@ -16,7 +16,7 @@
 <header>
         <?php include '../component/header.php'?>
     </header>
-    <!-- Responsive navbar-->
+    <!-- Responsive navbar
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-lg-5">
                 <a class="navbar-brand" href="#!">Start Bootstrap</a>
@@ -29,21 +29,23 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         <!-- Header-->
         <header class="py-5">
             <div class="container px-lg-5">
                 <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
                     <div class="m-4 m-lg-5">
                         <div class="img-circle-wrapper"></div>
-                        <!-- <div class="img-wrapper"></div> -->
-                        <!-- <div class="wrapper"></div> -->
-                            <img src="../../assets/img/pp2.png" class="img-circle" width="200px">
+                            <img src="../../assets/img/pp2.png" class="img-circle" width="200px" style="margin: 0 auto;">
                             <h1 id="greeting" class="display-5 fw-bold">Selamat Pagi!</h1>
                             <p id="time" class="fs-6"></p>
-                        <p class="fs-4">Bootstrap utility classes are used to create this jumbotron since the old component has been removed from the framework. Why create custom CSS when you can use utilities?</p>
-                        <a class="btn btn-primary btn-lg me-5" href="#!">Absen Masuk</a>
-                        <a class="btn btn-primary btn-lg" href="#!">Absen Pulang</a>
+                            <form action="../controller/absenController.php" method="post">
+                                <button class="btn btn-primary btn-lg me-5" type="submit" name="checkIn">Absen Masuk</button>
+                                <button class="btn btn-primary" type="submit" name="checkOut">
+                                    Absen Pulang
+                                </button>
+                                <!-- <a class="btn btn-primary btn-lg" href="#!">Absen Pulang</a> -->
+                            </form>
                     </div>
                 </div>
             </div>
@@ -65,7 +67,7 @@
                     <div class="col-lg-6 col-xxl-4 mb-5">
                         <div class="card bg-light border-0 h-100">
                             <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><a href=""><i class="bi bi-file-earmark-medical"></i></a></div>
+                                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><a href="../view/izinpage.php"><i class="bi bi-file-earmark-medical"></i></a></div>
                                 <h2 class="fs-4 fw-bold">Pengajuan Izin dan Sakit</h2>
                             </div>
                         </div>

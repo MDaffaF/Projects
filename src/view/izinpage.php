@@ -16,8 +16,15 @@
     <div class="container mt-5">
     <?php
     include '../connection/koneksi.php';
-    
-    $result = mysqli_query($koneksi, "SELECT * FROM tb_izin");
+    $username = $_SESSION['username'];
+    $query = "";
+    if ($_SESSION['role'] == 'admin') {
+        $query = "SELECT * FROM tb_izin";
+    } else {
+        $query = "SELECT * FROM tb_izin where username='$username'";
+    }
+    $result = mysqli_query($koneksi, $query);
+    $cek = mysqli_num_rows($result);
     ?>
         <div class="flex justify-between">
             <h1 class="font-bold text-3xl">Request izin</h1>
@@ -42,6 +49,9 @@
                 <tbody>
                     <?php
                     $index = 1;
+                    if ($cek == 0 ) {
+                        echo "<td colspan='5' style='text-align:center;'>Data Tidak Ditemukan</td>";
+                    }
                     while($izin_data = mysqli_fetch_array($result)) {
                         echo "<tr>";
                         echo "<td>".$index."</td>";
