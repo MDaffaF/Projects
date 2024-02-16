@@ -18,13 +18,19 @@
     $result = mysqli_query($koneksi, "SELECT * FROM tb_login");
     ?>
         <h1 class="font-bold text-3xl">Daftar User</h1>
-        <button  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createAkun"><a href="../view/pagependaftaran.php">Add User</button>
+        <a href="../view/pagependaftaran.php">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUser">
+                Add User
+                <!-- Add User -->
+            </button>
+        </a>
         <table class="table table-striped mt-5">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Username</th>
                     <th>Role</th>
+                    <th>Image</th>
                     <th>Action</th>
                 </tr>
                 <?php
@@ -34,6 +40,8 @@
                         echo "<td>".$index."</td>";
                         echo "<td>".$akun['username']."</td>";
                         echo "<td>".$akun['role']."</td>";
+                        
+                        echo "<td><img src='../../assets/img/$akun[image]' width='75' height='50'></td>";
                         echo "
                         <td>
                             <form method='post' action='../controller/Akuncontroller.php'>

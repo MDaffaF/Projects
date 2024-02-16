@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,7 @@
     <header>
         <?php include '../component/header.php';?>
     </header>
-    <div class="container mt-5">
+    <div class="container mt-5 w-75">
     <?php
     include '../connection/koneksi.php';
     $username = $_SESSION['username'];
@@ -37,71 +36,79 @@
                 }
             ?>
         </div>
-        <table class="table table-striped mt-5">
+        <table class="table table-striped mt-5 table-bordered">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Username</th>
-                    <th>Reason</th>
-                    <th>Approval</th>
-                    <th>Action</th>
+                    <th>Alasan</th>
+                    <th>Mulai Tanggal</th>
+                    <th>Sampai Tanggal</th>
+                    <th>Persetujuan</th>
+                    <!-- <th></th> -->
                 </tr>
                 <tbody>
                     <?php
                     $index = 1;
                     if ($cek == 0 ) {
-                        echo "<td colspan='5' style='text-align:center;'>Data Tidak Ditemukan</td>";
-                    }
-                    while($izin_data = mysqli_fetch_array($result)) {
-                        echo "<tr>";
-                        echo "<td>".$index."</td>";
-                        echo "<td>".$izin_data['username']."</td>";
-                        echo "<td>".$izin_data['reason']."</td>";
-                        if ($izin_data['approval'] == null) {
-                            echo "<td>Menunggu Approval</td>";
-                        } else if ($izin_data['approval'] == 0) {
-                            echo "<td>Ditolak</td>";
-                        } else{
-                            echo "<td>Diterima</td>";
-                        }
-                        if ($_SESSION['role'] == 'admin') {
+                        echo "<td colspan='7' style='text-align:center;'>Data Tidak Ditemukan</td>";
+                    } else {
+                        while($izin_data = mysqli_fetch_array($result)) {
+                            echo "<tr>";
+                            echo "<td>".$index."</td>";
+                            echo "<td>".$izin_data['username']."</td>";
+                            echo "<td>".$izin_data['reason']."</td>";
+                            echo "<td>".$izin_data['start_date']."</td>";
+                            echo "<td>".$izin_data['end_date']."</td>";
                             if ($izin_data['approval'] == null) {
-                                echo "<td>
-                                        <form method='post' action='../controller/izinController.php'>
-                                            <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
-                                            <button type='submit'  name='approve' class='btn btn-info'>Approve</button>
-                                            <button type='submit'  name='reject' class='btn btn-info'>Reject</button>
-                                    </form>
-                                    </td>
-                                </tr>";
-                            } else if($izin_data['approval']){
-                                echo "<td>
-                                        <form method='post' action='../controller/izinController.php'>
-                                            <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
-                                            <button type='submit'  name='reject' class='btn btn-info'>Reject</button>
-                                        </form>
-                                    </td>
-                                </tr>";
-                            } else if(!$izin_data['approval']){
-                                echo "<td>
-                                        <form method='post' action='../controller/izinController.php'>
-                                            <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
-                                            <button type='submit'  name='approve' class='btn btn-info'>Approve</button>
-                                        </form>
-                                    </td>
-                                </tr>";
+                                echo "<td>Menunggu Approval</td>";
+                            } else if ($izin_data['approval'] == 0) {
+                                echo "<td>Ditolak</td>";
+                            } else{
+                                echo "<td>Diterima</td>";
                             }
-                        } else {
-                            echo "
-                            <td>
-                                <form method='post' action='../controller/izinController.php'>
-                                    <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
-                                    <button type='submit'  name='cancelIzin' class='btn btn-danger'>cancel</button>
-                                </form>
-                            </td>
-                            </tr>";
+                            if ($_SESSION['role'] == 'admin') {
+                                if ($izin_data['approval'] == null) {
+                                    echo "<td>
+                                            <form method='post' action='../controller/izinController.php'>
+                                                <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
+                                                <button type='submit'  name='approve' class='btn btn-success bg-green-600'>Approve</button>
+                                                <button type='submit'  name='reject' class='btn btn-success bg-green-600'>Reject</button>
+                                        </form>
+                                        </td>
+                                    </tr>";
+                                } else if($izin_data['approval']){
+                                    echo "<td>
+                                            <form method='post' action='../controller/izinController.php'>
+                                                <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
+                                                <button type='submit' name='reject' class='btn btn-success bg-green-600'>Reject</button>
+                                            </form>
+                                        </td>
+                                    </tr>";
+                                } else if(!$izin_data['approval']){
+                                    echo "<td>
+                                            <form method='post' action='../controller/izinController.php'>
+                                                <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
+                                                <button type='submit' name='approve' class='btn btn-success bg-green-600'>Approve</button>
+                                            </form>
+                                        </td>
+                                    </tr>";
+                                }
+                            } else {
+                                if ($izin_data['approval']  == null) {
+                                    echo "
+                                    <td>
+                                        <form method='post' action='../controller/izinController.php'>
+                                            <input id='id_izin' name='id_izin' value='$izin_data[id_izin]' hidden>
+                                            <button type='submit'  name='cancelIzin' class='btn btn-danger bg-red-600'>Cancel</button>
+                                        </form>
+                                    </td>
+                                    </tr>";
+                                }
+                            }
                         }
                     }
+
                     ?>
                 </tbody>
             </thead>

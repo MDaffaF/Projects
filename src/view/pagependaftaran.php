@@ -11,9 +11,20 @@
     <title>Form Pendaftaran</title>
 </head>
 <body>
+<?php
+            session_start();
+            $username = $_SESSION['username'];
+            if ($username == null) {
+                ?>
+                <script>
+                    window.location.href="../view/loginpage.php"
+                </script>
+                <?php
+            }
+        ?>
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center m-0 text-center " style="height: 100vh;">
-        <form action="../controller/pendaftaran.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">
+        <form action="../controller/pendaftaran.php" method="post" id="login" autocomplete="off" class="bg-light border p-3" enctype="multipart/form-data">
             <div class="form">
                 <div class="col-12">
                 <img src="../../assets/img/logo.png" alt="logo" id= "logo" width= 50px>
@@ -40,6 +51,15 @@
                                     <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
                                 </span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="file" name="foto" required="required">
+                            <p style="color: red">Ekstensi yang diperbolehkan .png | .jpg | .jpeg | .gif</p>
                         </div>
                     </div>
                     <div class="col-12">

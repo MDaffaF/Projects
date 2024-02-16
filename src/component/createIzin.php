@@ -10,14 +10,22 @@
                 <label for="alasan">Alasan Izin: </label>
                 <textarea class="form-control" placeholder="Input alasan disini" id="alasan" name="alasan"></textarea>
             </div>
+            <div class="mb-3">
+              <label for="startDate">Start Date:</label>
+              <input type="date" id="startDate" name="startDate" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="endDate">End Date:</label>
+              <input type="date" id="endDate" name="endDate" class="form-control">
+            </div>
             <?php
                 echo "<input type='text' name='username' id='username' value='$_SESSION[username]' hidden>"
             ?>
         </form>
       </div>
       <div class="modal-footer">
-        <button  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button  class="btn btn-primary" type="submit" form="createIzinForm">Send Request</button>
+        <button  class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button  class="btn btn-primary bg-blue-600" type="submit" form="createIzinForm">Send Request</button>
       </div>
     </div>
   </div>

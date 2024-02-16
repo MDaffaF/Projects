@@ -19,11 +19,10 @@ if(isset($_POST['cancelCuti'])){
 }
 
 function cancelCuti(){
-
     include '../connection/koneksi.php';
     $id = $_POST['id_cuti'];
 
-    $result = mysqli_query($koneksi, "DELETE FROM tb_cuti WHERE id_cuti='$id'");
+    $result = mysqli_query($koneksi, "DELETE FROM tb_cuti WHERE id_cuti=$id");
     
     if ($result) {
         $affected_rows = mysqli_affected_rows($koneksi);
@@ -40,7 +39,7 @@ function cancelCuti(){
             setTimeout(function() {
             window.location.href = "../view/cutipage.php";
             }, 2000); // Redirect setelah 3 detik
-            </script>
+    </script>
             <?php
         } else {
             ?>
@@ -56,7 +55,6 @@ function cancelCuti(){
 
     header('../view/cutipage.php');
     mysqli_close($koneksi);
-    
 }
 
 function approve(){

@@ -12,8 +12,61 @@ include '../connection/koneksi.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengambil nilai dari form
     $username = $_POST["username"];
-    $password = $_POST["password"];
+    $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
     $role = $_POST["role"]; // Peran pengguna, misalnya "karyawan" atau "admin"
+
+    $rand = rand();
+    $ekstensi =  array('png','jpg','jpeg','gif');
+    $filename = $_FILES['foto']['name'];
+    $ukuran = $_FILES['foto']['size'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    
+    if(!in_array($ext,$ekstensi) ) {
+    header("location: ../view/pagependaftaran.php?alert=gagal_ekstensi");
+    } else{
+        if($ukuran < 1044070){ 
+            $xx = $rand.'_'.$filename;
+            move_uploaded_file($_FILES['foto']['tmp_name'], '../../assets/img/'.$rand.'_'.$filename);
+            // mysqli_query($koneksi, "INSERT INTO user VALUES(NULL,'$nama','$kontak','$alamat','$xx')");
+            // Query untuk memasukkan data ke database
+            $sql = "INSERT INTO tb_login (username, password, role, image) VALUES ('$username', '$password', '$role', '$xx')";
+
+            if ($koneksi->query($sql) === TRUE) {
+                // Jika data berhasil dimasukkan ke database
+                ?>
+                <script>
+                Swal.fire({
+                    icon: "success",
+                    text: "User berhasil ditambahkan!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                    setTimeout(function() {
+                    window.location.href = "../view/manageakun.php";
+                    }, 2000); // Redirect setelah 3 detik
+                </script>
+            <?php
+            } else {
+                // Jika terjadi kesalahan saat memasukkan data ke database
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: "error",
+                        text: "User gagal ditambahkan!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                        setTimeout(function() {
+                        window.location.href = "../view/pagependaftaran.php";
+                        }, 2000); // Redirect setelah 3 detik
+                </script>
+                <?php
+            }
+            header("location: ../view/manageakun.php?alert=berhasil");
+        } else{
+            header("location: ../view/pagependaftaran.php?alert=gagak_ukuran");
+        }
+    }
 
     // Query untuk memasukkan data ke database
     $sql = "INSERT INTO tb_login (username, password, role) VALUES ('$username', '$password', '$role')";
@@ -21,28 +74,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($koneksi->query($sql) === TRUE) {
         // Jika data berhasil dimasukkan ke database
         ?>
-    <script>Swal.fire({
-          title: "Apakah kamu yakin?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes"
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              title: "User berhasil Ditambahkan",
-              icon: "success",
-              showConfirmButton: false,
-              timer: 3000   
-            });
-          }
-        });</script>
         <script>
-    setTimeout(function() {
+        Swal.fire({
+            icon: "success",
+            text: "User berhasil ditambahkan!",
+            showConfirmButton: false,
+            timer: 1500
+        });
+            setTimeout(function() {
             window.location.href = "../view/manageakun.php";
-        }, 2000); // Redirect setelah 3 detik
-    </script>
+            }, 2000); // Redirect setelah 3 detik
+        </script>
     <?php
     } else {
         // Jika terjadi kesalahan saat memasukkan data ke database

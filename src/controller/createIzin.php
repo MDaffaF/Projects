@@ -14,9 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengambil nilai dari form
     $reason = $_POST["alasan"];
     $username = $_POST["username"];
+    $startDate = $_POST["startDate"];
+    $endDate = $_POST["endDate"];
 
     // Query untuk memasukkan data ke database
-    $sql = "INSERT INTO tb_izin ( reason, username) VALUES ('$reason', '$username')";
+    $sql = "INSERT INTO tb_izin ( reason, username, start_date, end_date) VALUES ('$reason', '$username', '$startDate', '$endDate')";
 
     if ($koneksi->query($sql) === TRUE) {
         // Jika data berhasil dimasukkan ke database

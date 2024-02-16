@@ -28,28 +28,17 @@ if(isset($_POST['delete'])){
     
             if ($affected_rows > 0) {
                 ?>
-                  <script>Swal.fire({
-                    title: "Apakah kamu yakin?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes"
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                        title: "User berhasil Ditambahkan",
-                        icon: "success",
-                        showConfirmButton: false,
-                        timer: 3000   
-                        });
-                    }
-                    });</script>
-                    <script>
-                setTimeout(function() {
-                window.location.href = "../view/manageakun.php";
-                }, 2000); // Redirect setelah 3 detik
-        </script>
+                <script>
+                Swal.fire({
+                    icon: "success",
+                    text: "User berhasil dihapus!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                    setTimeout(function() {
+                    window.location.href = "../view/manageakun.php";
+                    }, 2000); // Redirect setelah 3 detik
+                </script>
                 <?php
             } else {
                 ?>

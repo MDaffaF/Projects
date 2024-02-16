@@ -7,25 +7,25 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5/dist/sweetalert2.min.css"></head>
 <body>
-    
-</body>
-</html>
 <?php
 include '../connection/koneksi.php';
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengambil nilai dari form
     $reason = $_POST["alasan"];
     $username = $_POST["username"];
+    $startDate = $_POST["startDate"];
+    $endDate = $_POST["endDate"];
 
     // Query untuk memasukkan data ke database
-    $sql = "INSERT INTO tb_cuti ( reason, username) VALUES ('$reason', '$username')";
+    $sql = "INSERT INTO tb_cuti ( reason, username, start_date, end_date) VALUES ('$reason', '$username', '$startDate', '$endDate')";
 
     if ($koneksi->query($sql) === TRUE) {
         // Jika data berhasil dimasukkan ke database
         ?>
     <script>Swal.fire({
   icon: "success",
-  text: "Request Cuti berhasil ditambahkan!",
+  text: "Request cuti berhasil ditambahkan!",
   showConfirmButton: false,
   timer: 1500
 });</script>
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
     <script>Swal.fire({
   icon: "error",
-  text: "Request Cuti gagal ditambahkan!",
+  text: "Request cuti gagal ditambahkan!",
   showConfirmButton: false,
   timer: 1500
 });</script>
@@ -56,3 +56,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Menutup koneksi
 $koneksi->close();
 ?>
+</body>
+</html>
