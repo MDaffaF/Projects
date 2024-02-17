@@ -23,39 +23,44 @@ $cek = mysqli_num_rows($result);
 ?>
     <div class="flex justify-between">
         <h1 class="font-bold text-3xl">Riwayat Absen</h1>
+        <!-- Button to export table to PDF -->
+        <button onclick="exportToPDF()" class="btn btn-info">Export to PDF</button>
     </div>
-    <table class="table table-striped mt-5 table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Username</th>
-                <th>Tanggal</th>
-                <th>Jam Masuk</th>
-                <th>Jam Pulang</th>
-            </tr>
-            <tbody>
-                <?php
-                $index = 1;
-                if ($cek == 0 ) {
-                    echo "<td colspan='7' style='text-align:center;'>Data Tidak Ditemukan</td>";
-                } else {
-                    while($absen_data = mysqli_fetch_array($result)) {
-                    
-                        echo "<tr data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-latitude='$absen_data[latitude]' data-bs-longitude='$absen_data[longitude]' style='cursor:pointer;'>";
-                        echo "<td>".$index."</td>";
-                        echo "<td>".$absen_data['username']."</td>";
-                        echo "<td>".$absen_data['date']."</td>";
-                        echo "<td>".$absen_data['check_in']."</td>";
-                        echo "<td>".$absen_data['check_out']."</td>";
-                        echo "<td id='latitude' hidden>".$absen_data['latitude']."</td>";
-                        echo "<td id='latitude' hidden>".$absen_data['longitude']."</td>";
+    <div id="history">
+        <table class="table table-striped mt-5 table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Username</th>
+                    <th>Tanggal</th>
+                    <th>Jam Masuk</th>
+                    <th>Jam Pulang</th>
+                </tr>
+                <tbody>
+                    <?php
+                    $index = 1;
+                    if ($cek == 0 ) {
+                        echo "<td colspan='7' style='text-align:center;'>Data Tidak Ditemukan</td>";
+                    } else {
+                        while($absen_data = mysqli_fetch_array($result)) {
+                        
+                            echo "<tr data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-latitude='$absen_data[latitude]' data-bs-longitude='$absen_data[longitude]' style='cursor:pointer;'>";
+                            echo "<td>".$index."</td>";
+                            echo "<td>".$absen_data['username']."</td>";
+                            echo "<td>".$absen_data['date']."</td>";
+                            echo "<td>".$absen_data['check_in']."</td>";
+                            echo "<td>".$absen_data['check_out']."</td>";
+                            echo "<td id='latitude' hidden>".$absen_data['latitude']."</td>";
+                            echo "<td id='latitude' hidden>".$absen_data['longitude']."</td>";
+                            $index++;
+                        }
                     }
-                }
-
-                ?>
-            </tbody>
-        </thead>
-    </table>
+    
+                    ?>
+                </tbody>
+            </thead>
+        </table>
+    </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -69,11 +74,38 @@ $cek = mysqli_num_rows($result);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    function exportToPDF() {
+        var sTable = document.getElementById('history').innerHTML;
+
+        console.log(sTable);
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 17px Calibri;}";
+        style = style + "table, th, td {border: solid 1px #DDD;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>Riwayat Absen</title>');   // <title> FOR PDF HEADER.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+        win.print();    // PRINT THE CONTENTS.
+    }
+</script>
 
     <script src="../../assets/js/riwayatAbsen.js"></script>
 
