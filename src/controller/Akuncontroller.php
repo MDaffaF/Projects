@@ -43,8 +43,15 @@ if(isset($_POST['delete'])){
             } else {
                 ?>
                 <script>
-                    alert('No records were deleted. No rows affected.')
-                    window.location.href = "../view/manageakun.php"
+                Swal.fire({
+                    icon: "success",
+                    text: "No records were deleted. No rows affected.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                    setTimeout(function() {
+                    window.location.href = "../view/manageakun.php";
+                    }, 2000); // Redirect setelah 3 detik
                 </script>
                 <?php
             }

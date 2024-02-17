@@ -121,9 +121,16 @@ function approve(){
             <?php
         } else {
             ?>
-            <script>
-                alert('No records were updated. No rows affected.')
-                window.location.href = "../view/cutipage.php"
+            <script>Swal.fire({
+                icon: "error",
+                text: "No records were updated. No rows affected.",
+                showConfirmButton: false,
+                timer: 1500
+                });</script>
+                <script>
+            setTimeout(function() {
+            window.location.href = "../view/cutipage.php";
+            }, 2000); // Redirect setelah 3 detik
             </script>
             <?php
         }

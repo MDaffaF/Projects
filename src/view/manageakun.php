@@ -51,5 +51,9 @@
                         </td>
                         </tr>";
                     }?>
+    <!-- Footer-->
+    <footer class="py-2 mt-5 bg-dark w-full fixed" style="bottom: 0; left:0;">
+        <?php include '../component/footer.php'?>
+    </footer>
 </body>
 </html>

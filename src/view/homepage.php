@@ -40,6 +40,10 @@
 
                             $query = mysqli_query($koneksi, "SELECT * FROM tb_absen WHERE username='$username' And date='$date'");
                             if (mysqli_num_rows($query) == 0) {
+                                ?>
+                                    <input type="text" value="" id="latitude" name="latitude" hidden>
+                                    <input type="text" value="" id="longitude" name="longitude" hidden>
+                                <?php
                                 echo "<button type='submit' name='checkIn' class='btn btn-primary btn-lg bg-blue-600'>Absen Masuk</button>";
                             } else {
                                 while($data_absen = mysqli_fetch_array($query)) {
@@ -121,8 +125,8 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        <footer class="py-2 mt-5 bg-dark w-full relative" style="bottom: 0;">
+            <?php include '../component/footer.php'?>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -130,62 +134,7 @@
         <script src="js/scripts.js"></script>
         <script src="../../assets/js/home.js"></script>
 
-        <script>
-            function getLocation() {
-                // Check if the Geolocation API is supported by the browser
-                if (navigator.geolocation) {
-                    // Request the current position
-                    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-                } else {
-                    document.getElementById('locationResult').innerHTML = "Geolocation is not supported by your browser";
-                }
-            }
+        <script src="../../assets/js/absen.js"></script>
 
-            // Success callback function
-            function successCallback(position) {
-                // Access the latitude and longitude from the position object
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                sendValues(latitude, longitude)
-                // document.getElementById('locationResult').innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
-            }
-
-            // Error callback function
-            function errorCallback(error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        document.getElementById('locationResult').innerHTML = "User denied the request for Geolocation.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        document.getElementById('locationResult').innerHTML = "Location information is unavailable.";
-                        break;
-                    case error.TIMEOUT:
-                        document.getElementById('locationResult').innerHTML = "The request to get user location timed out.";
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        document.getElementById('locationResult').innerHTML = "An unknown error occurred.";
-                        break;
-                }
-            }
-
-            function sendValues(lat, long) {
-                // Get the values
-                var value1 = lat;
-                var value2 = long;
-                var checkIn = "checkIn";
-
-                // Use the Fetch API to send a POST request
-                fetch('../controller/absenController.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: 'latitude=' + encodeURIComponent(value1) 
-                        + '&longitude=' + encodeURIComponent(value2)
-                        + '&checkIn=' + encodeURIComponent(checkIn),
-                })
-            }
-        </script>
 </body>
 </html>

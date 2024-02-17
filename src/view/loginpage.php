@@ -1,3 +1,8 @@
+<?php session_start();
+    if (isset($_SESSION['username'])) {
+        header("Location: ../view/homepage.php");
+    } 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
-<body style="background: url(../../assets/img/Login.jpg)fixed;">
+<body style="background: url(../../assets/img/Login.jpg)fixed; background-repeat: space; background-size: cover;">
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center m-0 text-center " style="height: 100vh;">
         <form action="../controller/login.php" method="post" id="login" autocomplete="off" class="bg-light border p-3">

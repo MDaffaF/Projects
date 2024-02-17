@@ -22,12 +22,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
     
     if(!in_array($ext,$ekstensi) ) {
-    header("location: ../view/pagependaftaran.php?alert=gagal_ekstensi");
+        ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    text: "User gagal ditambahkan!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                    setTimeout(function() {
+                    window.location.href = "../view/pagependaftaran.php";
+                    }, 2000); // Redirect setelah 3 detik
+            </script>
+        <?php
     } else{
         if($ukuran < 1044070){ 
             $xx = $rand.'_'.$filename;
             move_uploaded_file($_FILES['foto']['tmp_name'], '../../assets/img/'.$rand.'_'.$filename);
-            // mysqli_query($koneksi, "INSERT INTO user VALUES(NULL,'$nama','$kontak','$alamat','$xx')");
             // Query untuk memasukkan data ke database
             $sql = "INSERT INTO tb_login (username, password, role, image) VALUES ('$username', '$password', '$role', '$xx')";
 
@@ -62,38 +73,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </script>
                 <?php
             }
-            header("location: ../view/manageakun.php?alert=berhasil");
         } else{
-            header("location: ../view/pagependaftaran.php?alert=gagak_ukuran");
+            ?>
+                <script>
+                    Swal.fire({
+                        icon: "error",
+                        text: "User gagal ditambahkan!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                        setTimeout(function() {
+                        window.location.href = "../view/pagependaftaran.php";
+                        }, 2000); // Redirect setelah 3 detik
+                </script>
+                <?php
         }
     }
-
-    // Query untuk memasukkan data ke database
-    $sql = "INSERT INTO tb_login (username, password, role) VALUES ('$username', '$password', '$role')";
-
-    if ($koneksi->query($sql) === TRUE) {
-        // Jika data berhasil dimasukkan ke database
-        ?>
-        <script>
-        Swal.fire({
-            icon: "success",
-            text: "User berhasil ditambahkan!",
-            showConfirmButton: false,
-            timer: 1500
-        });
-            setTimeout(function() {
-            window.location.href = "../view/manageakun.php";
-            }, 2000); // Redirect setelah 3 detik
-        </script>
-    <?php
-    } else {
-        // Jika terjadi kesalahan saat memasukkan data ke database
-        ?>
-    <script>alert("User gagal ditambahkan!")
-    window.location.href ="../view/pagependaftaran.php"
-    </script>
-    <?php
-}
 }
   
 // Menutup koneksi

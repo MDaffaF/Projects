@@ -14,26 +14,24 @@
 session_start();
 
 if(isset($_POST['checkIn'])){
+    // ?>
+    // <script>
+    //     alert('masuk sini');
+    // </script>
+    // <?php
     checkIn();
 } else if(isset($_POST['checkOut'])){
     checkOut();
 }
 
-// // Retrieve the values from the POST data
-// $value1 = $_POST['latitude'];
-// $value2 = $_POST['longitude'];
-
-// Example: Echo the values
-// echo "Value 1awtatatwwtawtawtwa: $value1, Value 2: $value2";
-
 function checkIn(){
     include '../connection/koneksi.php';
     // $id = $_POST['id_izin'];
-
+    date_default_timezone_set('Asia/Jakarta');
     $username = $_SESSION['username'];
     $date = date('l, d-m-Y');
     $time = date('H:i:s a');
-    $result = mysqli_query($koneksi, "INSERT INTO tb_absen (username, date, check_in, check_out) Values ('$username', '$date', '$time', '')");
+    $result = mysqli_query($koneksi, "INSERT INTO tb_absen (username, date, check_in, check_out, latitude, longitude) Values ('$username', '$date', '$time', '', $_POST[latitude], $_POST[longitude])");
     
     if ($result) {
         ?>
@@ -66,7 +64,7 @@ function checkOut(){
     $getCheckIn = mysqli_query($koneksi, "SELECT * FROM tb_absen WHERE username='$username' And date='$date'");
 
     if ( mysqli_num_rows($getCheckIn) != 0 ) {
-
+        date_default_timezone_set('Asia/Jakarta');
         $time = date('H:i:s a');
         $result = mysqli_query($koneksi, "UPDATE tb_absen SET check_out = '$time' WHERE date='$date' And username='$username'");
         
