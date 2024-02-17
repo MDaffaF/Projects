@@ -1,3 +1,5 @@
+<title>Riwayat Absensi</title>
+<link rel="icon" type="image/x-icon" href="../../assets/img/logo.png" />
 <html>
     <head>
         <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8mWB-yOPJ1gxQsi7Eeqv_h9yHH8lzhWg&callback=initMap"></script>
